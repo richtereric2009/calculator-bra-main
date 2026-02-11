@@ -51,11 +51,23 @@ def form():
 def submit_form():
     # Declarar variáveis para a coleta dos dados
     name = request.form['name']
+    email = request.form['email']
+    date = request.form['date']
+    address = request.form['address']
 
+    with open('form.txt', 'a') as f:
+        f.write(name + '\n')
+        f.write(date + '\n')
+        f.write(address + '\n')
+        f.write(email + '\n')
+    
     # Aqui você pode salvar os dados ou enviá-los por email
     return render_template('form_result.html', 
                            # Coloque as variáveis aqui
                            name=name,
+                           email=email,
+                           date=date,
+                           address=address,
                            )
 
 app.run(debug=True)
